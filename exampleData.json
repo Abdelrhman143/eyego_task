@@ -7,7 +7,8 @@
     "stock": 42,
     "rating": 4.5,
     "sales": 1200,
-    "createdAt": "2025-07-01"
+    "createdAt": "2025-07-01",
+    "imageUrl": "https://images.powproductphotography.com/beauty1.png"
   },
   {
     "id": "2",
@@ -17,7 +18,8 @@
     "stock": 150,
     "rating": 4.2,
     "sales": 350,
-    "createdAt": "2025-06-22"
+    "createdAt": "2025-06-22",
+    "imageUrl": "https://images.powproductphotography.com/beauty2.png"
   },
   {
     "id": "3",
@@ -27,7 +29,8 @@
     "stock": 88,
     "rating": 4.8,
     "sales": 520,
-    "createdAt": "2025-06-10"
+    "createdAt": "2025-06-10",
+    "imageUrl": "https://images.foxlight.net/product1.png"
   },
   {
     "id": "4",
@@ -37,6 +40,403 @@
     "stock": 200,
     "rating": 4.0,
     "sales": 670,
-    "createdAt": "2025-07-10"
+    "createdAt": "2025-07-10",
+    "imageUrl": "https://images.foxlight.net/product2.png"
+  },
+  {
+    "id": "5",
+    "name": "Wireless Headphones Pro",
+    "category": "Electronics",
+    "price": 199.99,
+    "stock": 75,
+    "rating": 4.6,
+    "sales": 850,
+    "createdAt": "2025-05-15",
+    "imageUrl": "https://images.powproductphotography.com/electronics1.png"
+  },
+  {
+    "id": "6",
+    "name": "Facial Cleanser Ultra",
+    "category": "Cosmetics",
+    "price": 24.49,
+    "stock": 120,
+    "rating": 4.3,
+    "sales": 430,
+    "createdAt": "2025-06-18",
+    "imageUrl": "https://images.powproductphotography.com/beauty3.png"
+  },
+  {
+    "id": "7",
+    "name": "Building Blocks Set",
+    "category": "Toys",
+    "price": 29.99,
+    "stock": 60,
+    "rating": 4.7,
+    "sales": 780,
+    "createdAt": "2025-05-30",
+    "imageUrl": "https://images.foxlight.net/product3.png"
+  },
+  {
+    "id": "8",
+    "name": "Women's Jeans Classic",
+    "category": "Clothes",
+    "price": 49.99,
+    "stock": 140,
+    "rating": 4.1,
+    "sales": 540,
+    "createdAt": "2025-07-02",
+    "imageUrl": "https://images.foxlight.net/product4.png"
+  },
+  {
+    "id": "9",
+    "name": "4K Action Camera",
+    "category": "Electronics",
+    "price": 299.99,
+    "stock": 30,
+    "rating": 4.4,
+    "sales": 300,
+    "createdAt": "2025-06-12",
+    "imageUrl": "https://images.powproductphotography.com/electronics2.png"
+  },
+  {
+    "id": "10",
+    "name": "Mascara Blast",
+    "category": "Cosmetics",
+    "price": 17.99,
+    "stock": 200,
+    "rating": 4.0,
+    "sales": 410,
+    "createdAt": "2025-07-05",
+    "imageUrl": "https://images.powproductphotography.com/beauty4.png"
+  },
+  {
+    "id": "11",
+    "name": "Puzzle 1000 Pieces",
+    "category": "Toys",
+    "price": 19.99,
+    "stock": 95,
+    "rating": 4.5,
+    "sales": 390,
+    "createdAt": "2025-06-20",
+    "imageUrl": "https://images.foxlight.net/product5.png"
+  },
+  {
+    "id": "12",
+    "name": "Hooded Sweatshirt",
+    "category": "Clothes",
+    "price": 39.99,
+    "stock": 110,
+    "rating": 4.2,
+    "sales": 620,
+    "createdAt": "2025-05-25",
+    "imageUrl": "https://images.foxlight.net/product6.png"
+  },
+  {
+    "id": "13",
+    "name": "Bluetooth Speaker",
+    "category": "Electronics",
+    "price": 89.99,
+    "stock": 95,
+    "rating": 4.3,
+    "sales": 910,
+    "createdAt": "2025-06-05",
+    "imageUrl": "https://images.powproductphotography.com/electronics3.png"
+  },
+  {
+    "id": "14",
+    "name": "Nail Polish Set",
+    "category": "Cosmetics",
+    "price": 9.99,
+    "stock": 220,
+    "rating": 4.1,
+    "sales": 480,
+    "createdAt": "2025-07-08",
+    "imageUrl": "https://images.powproductphotography.com/beauty5.png"
+  },
+  {
+    "id": "15",
+    "name": "Remote Control Drone",
+    "category": "Toys",
+    "price": 129.99,
+    "stock": 25,
+    "rating": 4.6,
+    "sales": 410,
+    "createdAt": "2025-05-18",
+    "imageUrl": "https://images.foxlight.net/product7.png"
+  },
+  {
+    "id": "16",
+    "name": "Summer Dress Floral",
+    "category": "Clothes",
+    "price": 29.99,
+    "stock": 160,
+    "rating": 4.3,
+    "sales": 450,
+    "createdAt": "2025-06-15",
+    "imageUrl": "https://images.foxlight.net/product8.png"
+  },
+  {
+    "id": "17",
+    "name": "Noise-Cancelling Earbuds",
+    "category": "Electronics",
+    "price": 149.99,
+    "stock": 85,
+    "rating": 4.4,
+    "sales": 780,
+    "createdAt": "2025-07-03",
+    "imageUrl": "https://images.powproductphotography.com/electronics4.png"
+  },
+  {
+    "id": "18",
+    "name": "Face Serum Glow",
+    "category": "Cosmetics",
+    "price": 29.99,
+    "stock": 130,
+    "rating": 4.5,
+    "sales": 400,
+    "createdAt": "2025-06-28",
+    "imageUrl": "https://images.powproductphotography.com/beauty6.png"
+  },
+  {
+    "id": "19",
+    "name": "Action Figure Hero",
+    "category": "Toys",
+    "price": 14.99,
+    "stock": 140,
+    "rating": 4.7,
+    "sales": 500,
+    "createdAt": "2025-05-29",
+    "imageUrl": "https://images.foxlight.net/product9.png"
+  },
+  {
+    "id": "20",
+    "name": "Winter Coat Unisex",
+    "category": "Clothes",
+    "price": 99.99,
+    "stock": 70,
+    "rating": 4.6,
+    "sales": 350,
+    "createdAt": "2025-04-20",
+    "imageUrl": "https://images.foxlight.net/product10.png"
+  },
+  {
+    "id": "21",
+    "name": "Smartwatch Series 5",
+    "category": "Electronics",
+    "price": 249.99,
+    "stock": 55,
+    "rating": 4.5,
+    "sales": 650,
+    "createdAt": "2025-05-05",
+    "imageUrl": "https://images.powproductphotography.com/electronics5.png"
+  },
+  {
+    "id": "22",
+    "name": "Eyeshadow Palette",
+    "category": "Cosmetics",
+    "price": 34.99,
+    "stock": 90,
+    "rating": 4.2,
+    "sales": 420,
+    "createdAt": "2025-07-06",
+    "imageUrl": "https://images.powproductphotography.com/beauty7.png"
+  },
+  {
+    "id": "23",
+    "name": "Stuffed Teddy Bear",
+    "category": "Toys",
+    "price": 19.99,
+    "stock": 130,
+    "rating": 4.8,
+    "sales": 600,
+    "createdAt": "2025-06-25",
+    "imageUrl": "https://images.foxlight.net/product11.png"
+  },
+  {
+    "id": "24",
+    "name": "Yoga Pants Comfort",
+    "category": "Clothes",
+    "price": 39.99,
+    "stock": 120,
+    "rating": 4.4,
+    "sales": 530,
+    "createdAt": "2025-05-22",
+    "imageUrl": "https://images.foxlight.net/product12.png"
+  },
+  {
+    "id": "25",
+    "name": "Portable Charger 10000mAh",
+    "category": "Electronics",
+    "price": 39.99,
+    "stock": 180,
+    "rating": 4.3,
+    "sales": 920,
+    "createdAt": "2025-06-07",
+    "imageUrl": "https://images.powproductphotography.com/electronics6.png"
+  },
+  {
+    "id": "26",
+    "name": "Perfume Eau De Parfum",
+    "category": "Cosmetics",
+    "price": 59.99,
+    "stock": 80,
+    "rating": 4.6,
+    "sales": 370,
+    "createdAt": "2025-05-30",
+    "imageUrl": "https://images.powproductphotography.com/beauty8.png"
+  },
+  {
+    "id": "27",
+    "name": "Wooden Train Set",
+    "category": "Toys",
+    "price": 49.99,
+    "stock": 70,
+    "rating": 4.7,
+    "sales": 430,
+    "createdAt": "2025-06-18",
+    "imageUrl": "https://images.foxlight.net/product13.png"
+  },
+  {
+    "id": "28",
+    "name": "Leather Belt",
+    "category": "Clothes",
+    "price": 24.99,
+    "stock": 150,
+    "rating": 4.5,
+    "sales": 620,
+    "createdAt": "2025-07-04",
+    "imageUrl": "https://images.foxlight.net/product14.png"
+  },
+  {
+    "id": "29",
+    "name": "VR Headset Plus",
+    "category": "Electronics",
+    "price": 399.99,
+    "stock": 20,
+    "rating": 4.4,
+    "sales": 290,
+    "createdAt": "2025-04-28",
+    "imageUrl": "https://images.powproductphotography.com/electronics7.png"
+  },
+  {
+    "id": "30",
+    "name": "Sunscreen SPF 50",
+    "category": "Cosmetics",
+    "price": 15.99,
+    "stock": 210,
+    "rating": 4.3,
+    "sales": 530,
+    "createdAt": "2025-06-20",
+    "imageUrl": "https://images.powproductphotography.com/beauty9.png"
+  },
+  {
+    "id": "31",
+    "name": "Puzzle Board Game",
+    "category": "Toys",
+    "price": 34.99,
+    "stock": 90,
+    "rating": 4.6,
+    "sales": 480,
+    "createdAt": "2025-05-10",
+    "imageUrl": "https://images.foxlight.net/product15.png"
+  },
+  {
+    "id": "32",
+    "name": "Flannel Shirt",
+    "category": "Clothes",
+    "price": 44.99,
+    "stock": 100,
+    "rating": 4.2,
+    "sales": 510,
+    "createdAt": "2025-06-02",
+    "imageUrl": "https://images.foxlight.net/product16.png"
+  },
+  {
+    "id": "33",
+    "name": "Smart Light Bulb",
+    "category": "Electronics",
+    "price": 24.99,
+    "stock": 140,
+    "rating": 4.1,
+    "sales": 640,
+    "createdAt": "2025-06-12",
+    "imageUrl": "https://images.powproductphotography.com/electronics8.png"
+  },
+  {
+    "id": "34",
+    "name": "Hair Conditioner Smooth",
+    "category": "Cosmetics",
+    "price": 9.99,
+    "stock": 180,
+    "rating": 4.4,
+    "sales": 580,
+    "createdAt": "2025-07-07",
+    "imageUrl": "https://images.powproductphotography.com/beauty10.png"
+  },
+  {
+    "id": "35",
+    "name": "Remote Robot Toy",
+    "category": "Toys",
+    "price": 59.99,
+    "stock": 45,
+    "rating": 4.7,
+    "sales": 300,
+    "createdAt": "2025-05-15",
+    "imageUrl": "https://images.foxlight.net/product17.png"
+  },
+  {
+    "id": "36",
+    "name": "Baseball Cap",
+    "category": "Clothes",
+    "price": 14.99,
+    "stock": 160,
+    "rating": 4.3,
+    "sales": 710,
+    "createdAt": "2025-06-25",
+    "imageUrl": "https://images.foxlight.net/product18.png"
+  },
+  {
+    "id": "37",
+    "name": "Tablet 10-inch",
+    "category": "Electronics",
+    "price": 329.99,
+    "stock": 50,
+    "rating": 4.4,
+    "sales": 540,
+    "createdAt": "2025-06-08",
+    "imageUrl": "https://images.powproductphotography.com/electronics9.png"
+  },
+  {
+    "id": "38",
+    "name": "Blush Palette",
+    "category": "Cosmetics",
+    "price": 22.99,
+    "stock": 140,
+    "rating": 4.5,
+    "sales": 460,
+    "createdAt": "2025-05-20",
+    "imageUrl": "https://images.powproductphotography.com/beauty11.png"
+  },
+  {
+    "id": "39",
+    "name": "Remote Control Boat",
+    "category": "Toys",
+    "price": 89.99,
+    "stock": 30,
+    "rating": 4.6,
+    "sales": 260,
+    "createdAt": "2025-07-01",
+    "imageUrl": "https://images.foxlight.net/product19.png"
+  },
+  {
+    "id": "40",
+    "name": "Summer Sandals",
+    "category": "Clothes",
+    "price": 29.99,
+    "stock": 150,
+    "rating": 4.4,
+    "sales": 580,
+    "createdAt": "2025-06-15",
+    "imageUrl": "https://images.foxlight.net/product20.png"
   }
 ]

@@ -27,12 +27,12 @@ export default function Layout({ children }) {
 
       <Header toggleSidebar={toggleSidebar} />
 
-      <div className=" flex flex-1 container">
+      <div className=" md:flex container">
         <div className="hidden md:block">
           <Sidebar />
         </div>
 
-        <main className="flex-1 p-4">{children}</main>
+        <main className="ml-5 flex-1">{children}</main>
       </div>
     </div>
   );
