@@ -1,11 +1,21 @@
 import supabase from "../lib/supabase";
 
 // get  products
-export async function getProducts(limit = 10, offset = 0, category = null) {
+export async function getProducts(
+  limit = 10,
+  offset = 0,
+  category = null,
+  sort = null
+) {
   let query = supabase.from("products").select("*", { count: "exact" });
   console.log("category", category);
   if (category && category !== "all") {
     query = query.eq("category", category);
+  }
+
+  if (sort) {
+    const [column, direction] = sort.split("-");
+    query = query.order(column, { ascending: direction === "asc" });
   }
 
   query = query.range(offset, offset + limit - 1);

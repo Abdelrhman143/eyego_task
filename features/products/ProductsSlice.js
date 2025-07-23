@@ -11,10 +11,10 @@ const { createSlice, createAsyncThunk } = require("@reduxjs/toolkit");
 // create asyncThunks to connect with supabase
 export const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
-  async ({ limit = 10, page = 1, category = null }) => {
+  async ({ limit = 10, page = 1, category = null, sort = null }) => {
     const offset = (page - 1) * limit;
 
-    return await getProducts(limit, offset, category);
+    return await getProducts(limit, offset, category, sort);
   }
 );
 
@@ -47,6 +47,7 @@ const initialState = {
   page: 1,
   limit: 10,
   category: "all",
+  sort: null,
 };
 const productsSlice = createSlice({
   name: "products",
@@ -60,6 +61,9 @@ const productsSlice = createSlice({
     },
     setCategory(state, action) {
       state.category = action.payload.category;
+    },
+    setSort(state, action) {
+      state.sort = action.payload.sort;
     },
   },
   extraReducers: (builder) => {
@@ -91,6 +95,7 @@ const productsSlice = createSlice({
   },
 });
 
-export const { setPage, setLimit, setCategory } = productsSlice.actions;
+export const { setPage, setLimit, setCategory, setSort } =
+  productsSlice.actions;
 
 export default productsSlice.reducer;

@@ -107,7 +107,7 @@ export default function Dashboard() {
       <Pagination className="my-4">
         <PaginationContent>
           <PaginationItem>
-            {totalPages === 1 ? (
+            {totalPages === 1 || page === 1 ? (
               ""
             ) : (
               <PaginationPrevious
@@ -129,7 +129,7 @@ export default function Dashboard() {
             </PaginationItem>
           ))}
           <PaginationItem>
-            {totalPages === 1 ? (
+            {totalPages === 1 || page === totalPages ? (
               ""
             ) : (
               <PaginationNext
