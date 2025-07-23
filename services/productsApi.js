@@ -1,11 +1,15 @@
 import supabase from "../lib/supabase";
 
 // get All products
-export async function getProducts() {
-  let { data, error } = await supabase.from("products").select("*");
+export async function getProducts(limit = 10, offset = 0) {
+  let { data, error, count } = await supabase
+    .from("products")
+    .select("*", { count: "exact" })
+    .range(offset, offset + limit - 1);
+
   if (error) throw new Error("error in geting products");
 
-  return data;
+  return { data, count };
 }
 
 // adding product

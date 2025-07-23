@@ -4,14 +4,17 @@ import {
   deleteProduct as deleteProductApi,
   editProduct as editProductApi,
 } from "@/services/productsApi";
+import { set } from "react-hook-form";
 
 const { createSlice, createAsyncThunk } = require("@reduxjs/toolkit");
 
 // create asyncThunks to connect with supabase
 export const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
-  async () => {
-    return await getProducts();
+  async ({ limit = 10, page = 1 }) => {
+    const offset = (page - 1) * limit;
+    const result = await getProducts(limit, offset);
+    return await getProducts(limit, offset);
   }
 );
 
@@ -36,15 +39,33 @@ export const editProduct = createAsyncThunk(
   }
 );
 
-const initialState = { items: [], status: "idle", error: null };
+const initialState = {
+  items: [],
+  status: "idle",
+  error: null,
+  count: 0,
+  page: 1,
+  limit: 10,
+};
 const productsSlice = createSlice({
   name: "products",
   initialState,
-  reducers: {},
+  reducers: {
+    setPage(state, action) {
+      state.page = action.payload.page;
+    },
+    setLimit(state, action) {
+      state.limit = action.payload.limit;
+    },
+  },
   extraReducers: (builder) => {
     builder
+      .addCase(fetchProducts.pending, (state) => {
+        state.status = "loading";
+      })
       .addCase(fetchProducts.fulfilled, (state, action) => {
-        state.items = action.payload;
+        state.items = action.payload.data;
+        state.count = action.payload.count;
         state.status = "succeeded";
       })
       .addCase(addProduct.fulfilled, (state, action) => {
@@ -65,5 +86,7 @@ const productsSlice = createSlice({
       });
   },
 });
+
+export const { setPage, setLimit } = productsSlice.actions;
 
 export default productsSlice.reducer;
