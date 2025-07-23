@@ -107,11 +107,15 @@ export default function Dashboard() {
       <Pagination className="my-4">
         <PaginationContent>
           <PaginationItem>
-            <PaginationPrevious
-              className="bg-gray-200"
-              onClick={() => handlePageChange(page > 1 ? page - 1 : 1)}
-              href={`?page=${page > 1 ? page - 1 : 1}&limit=${limit}`}
-            />
+            {totalPages === 1 ? (
+              ""
+            ) : (
+              <PaginationPrevious
+                className="bg-gray-200"
+                onClick={() => handlePageChange(page > 1 ? page - 1 : 1)}
+                href={`?page=${page > 1 ? page - 1 : 1}&limit=${limit}`}
+              />
+            )}
           </PaginationItem>
           {[...Array(totalPages)].map((_, idx) => (
             <PaginationItem key={idx}>
@@ -125,15 +129,19 @@ export default function Dashboard() {
             </PaginationItem>
           ))}
           <PaginationItem>
-            <PaginationNext
-              className="bg-gray-200"
-              href={`?page=${
-                page < totalPages ? page + 1 : totalPages
-              }&limit=${limit}`}
-              onClick={() =>
-                handlePageChange(page < totalPages ? page + 1 : totalPages)
-              }
-            />
+            {totalPages === 1 ? (
+              ""
+            ) : (
+              <PaginationNext
+                className="bg-gray-200"
+                href={`?page=${
+                  page < totalPages ? page + 1 : totalPages
+                }&limit=${limit}`}
+                onClick={() =>
+                  handlePageChange(page < totalPages ? page + 1 : totalPages)
+                }
+              />
+            )}
           </PaginationItem>
         </PaginationContent>
       </Pagination>
