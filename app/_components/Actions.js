@@ -4,7 +4,7 @@ import { useState } from "react";
 import DeleteDailog from "./DeleteDailog";
 import EditProduct from "./EditProduct";
 
-export default function Actions() {
+export default function Actions({ product }) {
   const [isDeleting, setIsDeleting] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
 
@@ -24,10 +24,18 @@ export default function Actions() {
       </button>
 
       {isDeleting && (
-        <DeleteDailog open={isDeleting} onOpenChange={setIsDeleting} />
+        <DeleteDailog
+          product={product}
+          open={isDeleting}
+          onOpenChange={setIsDeleting}
+        />
       )}
       {isEditing && (
-        <EditProduct open={isEditing} onOpenChange={setIsEditing}></EditProduct>
+        <EditProduct
+          product={product}
+          open={isEditing}
+          onOpenChange={setIsEditing}
+        ></EditProduct>
       )}
     </>
   );

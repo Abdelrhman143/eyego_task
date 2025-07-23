@@ -9,7 +9,7 @@ export default function AddProdcuct() {
     <>
       {toggleAdd && <AddProductForm />}
       <Button
-        className="bg-blue-500 cursor-pointer mt-10"
+        className="bg-buttonColor cursor-pointer mt-10"
         type="button"
         onClick={() => setToggleAdd(!toggleAdd)}
       >

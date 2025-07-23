@@ -1,19 +1,39 @@
 "use client";
 import { Button } from "@/components/ui/button";
+import { addProduct, fetchProducts } from "@/features/products/ProductsSlice";
+import { uploadImage } from "@/services/productsApi";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
 
 export default function AddProductForm() {
-  const { register, handleSubmit, formState } = useForm();
+  const { register, handleSubmit, reset, formState } = useForm();
   const { errors } = formState;
 
-  function onSubmit(data) {
-    console.log(data);
+  const dispatch = useDispatch();
+
+  async function onSubmit(data) {
+    try {
+      // const imageFile = data.image[0];
+      // console.log("Image file to upload:", imageFile);
+      // const imageUrl = await uploadImage(imageFile);
+      const resultAction = await dispatch(
+        addProduct({ ...data, id: Date.now() })
+      );
+      if (addProduct.fulfilled.match(resultAction)) {
+        dispatch(fetchProducts());
+        toast.success("successfully adding product");
+        reset();
+      }
+    } catch (error) {
+      toast.error(`error ${error}`);
+    }
   }
 
   return (
     <form className="mt-5" onSubmit={handleSubmit(onSubmit)}>
-      <div className="mb-5 flex items-center gap-2">
+      {/* <div className="mb-5 flex items-center gap-2">
         <label htmlFor="id" className="w-32">
           ID:
         </label>
@@ -24,7 +44,7 @@ export default function AddProductForm() {
           placeholder="ID"
         />
         {errors.id && <span>ID is required</span>}
-      </div>
+      </div> */}
       <div className="mb-5 flex items-center gap-2">
         <label htmlFor="name" className="w-32">
           Name:
@@ -115,7 +135,7 @@ export default function AddProductForm() {
         />
         {errors.sales && <span>Sales is required</span>}
       </div> */}
-      <div className="mb-5 flex items-center gap-2">
+      {/* <div className="mb-5 flex items-center gap-2">
         <label htmlFor="image" className="w-32">
           Product Image:
         </label>
@@ -126,9 +146,9 @@ export default function AddProductForm() {
           className="border-2 rounded-sm p-2 "
         />
         {errors.image && <span>Image is required</span>}
-      </div>
+      </div> */}
       <div className="flex justify-end">
-        <Button className="bg-blue-500 cursor-pointer" type="submit">
+        <Button className="bg-buttonColor cursor-pointer" type="submit">
           Add
         </Button>
       </div>

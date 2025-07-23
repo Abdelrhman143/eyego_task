@@ -1,26 +1,61 @@
-import { Button } from "@/components/ui/button";
+"use client";
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import {
+  deleteProduct,
+  fetchProducts,
+} from "@/features/products/ProductsSlice";
+import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+export default function DeleteDailog({ open, onOpenChange, product }) {
+  const dispatch = useDispatch();
 
-export default function DeleteDailog({ open, onOpenChange }) {
+  async function handleDelete() {
+    await dispatch(deleteProduct(product.id));
+    await dispatch(fetchProducts());
+    toast.success("successfully delete the product");
+  }
+
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Are you absolutely sure?</DialogTitle>
-          <DialogDescription>
-            This action cannot be undone. This will permanently delete your
-            account and remove your data from our servers.
-            <Button className="bg-red-500 mt-5 block">Delete</Button>
-          </DialogDescription>
-        </DialogHeader>
-      </DialogContent>
-    </Dialog>
+    <AlertDialog open={open} onOpenChange={onOpenChange}>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+          <AlertDialogDescription>
+            delete product can not be undo
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogAction
+            onClick={() => handleDelete()}
+            className="bg-red-500"
+          >
+            Continue
+          </AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+    // <Dialog open={open} onOpenChange={onOpenChange}>
+    //   <DialogContent>
+    //     <DialogHeader>
+    //       <DialogTitle>Are you absolutely sure?</DialogTitle>
+    //       <DialogDescription>
+    //         This action cannot be undone. This will permanently delete your
+    //         account and remove your data from our servers.
+    //         <Button className="bg-red-500 mt-5 block">Delete</Button>
+    //       </DialogDescription>
+    //     </DialogHeader>
+    //   </DialogContent>
+    // </Dialog>
   );
 }

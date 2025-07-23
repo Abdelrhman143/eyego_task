@@ -1,5 +1,6 @@
-import Header from "./_components/Header";
+import { Toaster } from "react-hot-toast";
 import "./globals.css";
+import { Providers } from "./Providers";
 
 export const metadata = {
   title: "EyeGo Dashboard",
@@ -10,7 +11,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <div>{children}</div>
+        <Providers>
+          <div>{children}</div>
+          <Toaster />
+        </Providers>
       </body>
     </html>
   );

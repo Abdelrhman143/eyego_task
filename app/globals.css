@@ -49,6 +49,7 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --color-buttonColor: #405add;
 }
 
 @media (prefers-color-scheme: white) {
