@@ -1,12 +1,17 @@
 import supabase from "../lib/supabase";
 
-// get All products
-export async function getProducts(limit = 10, offset = 0) {
-  let { data, error, count } = await supabase
-    .from("products")
-    .select("*", { count: "exact" })
-    .range(offset, offset + limit - 1);
+// get  products
+export async function getProducts(limit = 10, offset = 0, category = null) {
+  let query = supabase.from("products").select("*", { count: "exact" });
+  console.log("category", category);
+  if (category && category !== "all") {
+    query = query.eq("category", category);
+  }
 
+  query = query.range(offset, offset + limit - 1);
+
+  const { data, error, count } = await query;
+  console.log("data in api", data);
   if (error) throw new Error("error in geting products");
 
   return { data, count };

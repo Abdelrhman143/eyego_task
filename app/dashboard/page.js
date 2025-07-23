@@ -28,6 +28,8 @@ import { fetchProducts, setPage } from "@/features/products/ProductsSlice";
 import { Minus } from "lucide-react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Spinner from "../_components/Spinner";
+import Filter from "../_components/Filter";
+import Sort from "../_components/Sort";
 
 export default function Dashboard() {
   const dispatch = useDispatch();
@@ -43,8 +45,13 @@ export default function Dashboard() {
 
   // fetch limit products
   useEffect(() => {
+    const currentPage = searchParams.get("page");
+    const currentLimit = searchParams.get("limit");
+    if (!currentPage || !currentLimit) {
+      router.replace(`?page=1&limit=10`);
+    }
     dispatch(fetchProducts({ limit, page }));
-  }, [dispatch, page, limit]);
+  }, [dispatch, page, limit, router, searchParams]);
 
   function handlePageChange(newPage) {
     router.push(`?page=${newPage}&limit=${limit}`);
@@ -53,6 +60,11 @@ export default function Dashboard() {
 
   return (
     <>
+      <div className="md:flex md:items-center md:justify-between mb-4">
+        <Filter />
+        <Sort />
+      </div>
+
       {status === "loading" ? (
         <Spinner />
       ) : (
@@ -91,7 +103,8 @@ export default function Dashboard() {
           </Table>
         </div>
       )}
-      <Pagination>
+
+      <Pagination className="my-4">
         <PaginationContent>
           <PaginationItem>
             <PaginationPrevious
