@@ -36,7 +36,9 @@ export default function Dashboard() {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products.items);
   const count = useSelector((state) => state.products.count);
+
   const status = useSelector((state) => state.products.status);
+
   const searchParams = useSearchParams();
   const page = Math.max(1, parseInt(searchParams.get("page") || "1", 10));
   const limit = parseInt(searchParams.get("limit") || "10", 10);
