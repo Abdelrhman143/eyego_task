@@ -7,14 +7,15 @@ export default function AddProdcuct() {
   const [toggleAdd, setToggleAdd] = useState(false);
   return (
     <>
-      {toggleAdd && <AddProductForm />}
+      {/* {toggleAdd && <AddProductForm />}
       <Button
         className="bg-buttonColor cursor-pointer mb-2"
         type="button"
         onClick={() => setToggleAdd(!toggleAdd)}
       >
         {toggleAdd ? "close" : "add product"}
-      </Button>
+      </Button> */}
+      <AddProductForm />
     </>
   );
 }

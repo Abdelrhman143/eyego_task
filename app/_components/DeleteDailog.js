@@ -15,13 +15,17 @@ import {
   fetchProducts,
 } from "@/features/products/ProductsSlice";
 import toast from "react-hot-toast";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 export default function DeleteDailog({ open, onOpenChange, product }) {
+  const limit = useSelector((state) => state.products.limit);
+  const page = useSelector((state) => state.products.page);
+  const category = useSelector((state) => state.products.category);
+  const sort = useSelector((state) => state.products.sort);
   const dispatch = useDispatch();
 
   async function handleDelete() {
     await dispatch(deleteProduct(product.id));
-    await dispatch(fetchProducts());
+    await dispatch(fetchProducts({ limit, page, category, sort }));
     toast.success("successfully delete the product");
   }
 

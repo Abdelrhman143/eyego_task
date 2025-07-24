@@ -15,19 +15,22 @@ import { editProduct, fetchProducts } from "@/features/products/ProductsSlice";
 import { Label } from "@radix-ui/react-label";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function EditProduct({ open, onOpenChange, product }) {
   const { register, handleSubmit, formState } = useForm();
   const { errors } = formState;
-
+  const limit = useSelector((state) => state.products.limit);
+  const page = useSelector((state) => state.products.page);
+  const category = useSelector((state) => state.products.category);
+  const sort = useSelector((state) => state.products.sort);
   const dispatch = useDispatch();
 
   async function onSubmit(data) {
     try {
       await dispatch(editProduct({ updates: data, id: product.id })).unwrap();
       toast.success("Product updated successfully!");
-      dispatch(fetchProducts());
+      dispatch(fetchProducts({ limit, page, category, sort }));
       onOpenChange(false); // <-- Only close if no error
     } catch (error) {
       toast.error(error.message || "Failed to update product");
@@ -64,7 +67,7 @@ export default function EditProduct({ open, onOpenChange, product }) {
               />
               {errors?.name && <span>name is required</span>}
             </div>
-            <div className="grid gap-3">
+            {/* <div className="grid gap-3">
               <Label htmlFor="category">Category :</Label>
               <Input
                 id="category"
@@ -72,7 +75,17 @@ export default function EditProduct({ open, onOpenChange, product }) {
                 defaultValue={product.category}
               />
               {errors?.category && <span>category is required</span>}
-            </div>
+            </div> */}
+            <select
+              {...register("category", { required: true })}
+              className="border-2 p-2 flex-1"
+              id="category"
+            >
+              <option value="Clothes">Clothes</option>
+              <option value="Electronics">Electronics</option>
+              <option value="Cosmetics">Cosmetics</option>
+              <option value="Toys">Toys</option>
+            </select>
             <div className="grid gap-3">
               <Label htmlFor="price">Price :</Label>
               <Input
@@ -103,10 +116,6 @@ export default function EditProduct({ open, onOpenChange, product }) {
               />
               {errors?.stock && <span>{errors?.stock?.message}</span>}
             </div>
-            {/* <div className="grid gap-3">
-              <Label htmlFor="productImage">Product Image :</Label>
-              <Input id="productImage" name="productImage" defaultValue="" />
-            </div> */}
           </div>
           <DialogFooter className="mt-5">
             <DialogClose asChild>
