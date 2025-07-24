@@ -1,21 +1,24 @@
----
-
 # Eyego Intern- Q3 2025 - Task Delivery
 
 ## Setup Instructions
 
+---
+
 1. **Clone the repository:**
+
    ```bash
    git clone <your-repo-url>
    cd eyego_task
    ```
 
 2. **Install dependencies:**
+
    ```bash
    npm install
    ```
 
 3. **Configure environment variables:**
+
    - Copy `.env.example` to `.env.local` (if provided) or create `.env.local`.
    - Add your Supabase and NextAuth credentials:
      ```
