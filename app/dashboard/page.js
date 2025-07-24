@@ -24,7 +24,12 @@ import supabase from "@/lib/supabase";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { fetchProducts, setPage } from "@/features/products/ProductsSlice";
+import {
+  fetchProducts,
+  setCategory,
+  setPage,
+  setSort,
+} from "@/features/products/ProductsSlice";
 import { Minus } from "lucide-react";
 import { useSearchParams, useRouter, redirect } from "next/navigation";
 import Spinner from "../_components/Spinner";
@@ -36,10 +41,11 @@ export default function Dashboard() {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products.items);
   const count = useSelector((state) => state.products.count);
-
   const status = useSelector((state) => state.products.status);
 
   const searchParams = useSearchParams();
+  const sort = searchParams.get("sort" || null);
+  const category = searchParams.get("category" || "all");
   const page = Math.max(1, parseInt(searchParams.get("page") || "1", 10));
   const limit = parseInt(searchParams.get("limit") || "10", 10);
   const router = useRouter();
@@ -53,13 +59,36 @@ export default function Dashboard() {
     if (!currentPage || !currentLimit) {
       router.replace(`?page=1&limit=10`);
     }
-    dispatch(fetchProducts({ limit, page }));
-  }, [dispatch, page, limit, router, searchParams]);
+    dispatch(fetchProducts({ limit, page, category, sort }));
+  }, [dispatch, page, limit, router, searchParams, category, sort]);
+
+  function buildPageUrl(newPage) {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("page", newPage);
+    params.set("limit", limit);
+    if (category) params.set("category", category);
+    if (sort) params.set("sort", sort);
+    return `?${params.toString()}`;
+  }
 
   function handlePageChange(newPage) {
-    router.push(`?page=${newPage}&limit=${limit}`);
+    router.push(buildPageUrl(newPage));
     dispatch(setPage(newPage));
   }
+
+  // Get values from Redux
+  const reduxCategory = useSelector((state) => state.products.category);
+  const reduxSort = useSelector((state) => state.products.sort);
+
+  // Sync Redux state with URL
+  useEffect(() => {
+    if (reduxCategory !== category) {
+      dispatch(setCategory({ category }));
+    }
+    if (reduxSort !== sort) {
+      dispatch(setSort({ sort }));
+    }
+  }, [category, sort, reduxCategory, reduxSort, dispatch]);
 
   return (
     <>
@@ -116,14 +145,16 @@ export default function Dashboard() {
               <PaginationPrevious
                 className="bg-gray-200"
                 onClick={() => handlePageChange(page > 1 ? page - 1 : 1)}
-                href={`?page=${page > 1 ? page - 1 : 1}&limit=${limit}`}
+                // `?page=${page > 1 ? page - 1 : 1}&limit=${limit}`
+                href={buildPageUrl(page > 1 ? page - 1 : 1)}
               />
             )}
           </PaginationItem>
           {[...Array(totalPages)].map((_, idx) => (
             <PaginationItem key={idx}>
               <PaginationLink
-                href={`?page=${idx + 1}&limit=${limit}`}
+                // `?page=${idx + 1}&limit=${limit}`
+                href={buildPageUrl(idx + 1)}
                 isActive={page === idx + 1}
                 onClick={() => handlePageChange(idx + 1)}
               >
@@ -137,9 +168,10 @@ export default function Dashboard() {
             ) : (
               <PaginationNext
                 className="bg-gray-200"
-                href={`?page=${
-                  page < totalPages ? page + 1 : totalPages
-                }&limit=${limit}`}
+                // `?page=${
+                //   page < totalPages ? page + 1 : totalPages
+                // }&limit=${limit}`
+                href={buildPageUrl(page < totalPages ? page + 1 : totalPages)}
                 onClick={() =>
                   handlePageChange(page < totalPages ? page + 1 : totalPages)
                 }
