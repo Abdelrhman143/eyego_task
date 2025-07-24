@@ -21,7 +21,7 @@ export default function Header({ toggleSidebar }) {
           <Logo />
         </div>
         <div>
-          <button onClick={handleLogout}>
+          <button className="hover:cursor-pointer" onClick={handleLogout}>
             <LogOut />
           </button>
         </div>

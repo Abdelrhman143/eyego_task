@@ -3,6 +3,8 @@ import {
   getProducts,
   deleteProduct as deleteProductApi,
   editProduct as editProductApi,
+  getTotalRevenue,
+  getCategoryCounts,
 } from "@/services/productsApi";
 import { set } from "react-hook-form";
 
@@ -39,6 +41,20 @@ export const editProduct = createAsyncThunk(
   }
 );
 
+export const fetchTotalRevenue = createAsyncThunk(
+  "products/fetchTotalRevenue",
+  async () => {
+    return await getTotalRevenue();
+  }
+);
+
+export const fetchcategoryCounts = createAsyncThunk(
+  "products/fetchCategoryCounts",
+  async () => {
+    return await getCategoryCounts();
+  }
+);
+
 const initialState = {
   items: [],
   status: "idle",
@@ -48,6 +64,8 @@ const initialState = {
   limit: 10,
   category: "all",
   sort: null,
+  totalRevenue: 0,
+  categoryCounts: [],
 };
 const productsSlice = createSlice({
   name: "products",
@@ -91,6 +109,12 @@ const productsSlice = createSlice({
           );
           if (idx !== -1) state.items[idx] = action.payload[0].updates;
         }
+      })
+      .addCase(fetchTotalRevenue.fulfilled, (state, action) => {
+        state.totalRevenue = action.payload;
+      })
+      .addCase(fetchcategoryCounts.fulfilled, (state, action) => {
+        state.categoryCounts = action.payload;
       });
   },
 });

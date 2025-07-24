@@ -8,7 +8,7 @@ export async function getProducts(
   sort = null
 ) {
   let query = supabase.from("products").select("*", { count: "exact" });
-  console.log("category", category);
+
   if (category && category !== "all") {
     query = query.eq("category", category);
   }
@@ -21,7 +21,7 @@ export async function getProducts(
   query = query.range(offset, offset + limit - 1);
 
   const { data, error, count } = await query;
-  console.log("data in api", data);
+
   if (error) throw new Error("error in geting products");
 
   return { data, count };
@@ -50,54 +50,48 @@ export async function editProduct(id, updates) {
     .update(updates)
     .eq("id", id);
 
-  if (error) throw new Error("error in creating product");
+  if (error) throw new Error("error in edit product");
 
   return data;
 }
 
-// export async function uploadImage(image) {
-//   const imageExt = image.name.split(".").pop();
-//   const imageName = `${Math.random()}.${imageExt}`;
-//   const imagePath = `https://egctemlxsncxctenrutn.supabase.co/storage/v1/object/public/images//${imageName}`;
+// geting revenu
+export async function getTotalRevenue() {
+  const { data, error } = await supabase
+    .from("products")
+    .select("sales , price");
 
-//   let { error } = await supabase.storage
-//     .from("images")
-//     .upload(imagePath, image);
-//   if (error) throw error;
+  if (error) throw new Error("error in geting revenu");
+  let total = 0;
+  if (Array.isArray(data)) {
+    total = data.reduce(
+      (sum, item) => sum + (item.price || 0) * (item.sales || 0),
+      0
+    );
+  }
 
-//   if (error) throw new Error("error in adding image to storage");
+  console.log("total rev from api", total);
 
-//   const { data } = supabase.storage
-//     .from("product-images")
-//     .getPublicUrl(imagePath);
+  return total;
+}
 
-//   return data.publicUrl;
-// }
+// geting categorys
+export async function getCategoryCounts() {
+  const { data, error } = await supabase
+    .from("products")
+    .select("category, count:id", { groupBy: ["category"] });
 
-// export async function uploadImage(image) {
-//   console.log("Uploading image:", image);
-//   const imageExt = image.name.split(".").pop();
-//   const imageName = `${Date.now()}.${imageExt}`;
-//   const filePath = `${imageName}`;
+  const counts = {};
+  data.forEach((item) => {
+    counts[item.category] = (counts[item.category] || 0) + 1;
+  });
 
-//   const { data: uploadData, error: uploadError } = await supabase.storage
-//     .from("images")
-//     .upload(filePath, image);
+  return Object.entries(counts).map(([category, count]) => ({
+    category,
+    count,
+  }));
 
-//   if (uploadError) {
-//     console.error("Upload error:", uploadError);
-//     throw new Error("error in adding image to storage");
-//   }
-
-//   const { data: urlData, error: urlError } = supabase.storage
-//     .from("images")
-//     .getPublicUrl(filePath);
-
-//   if (urlError) {
-//     console.error("Get public URL error:", urlError);
-//     throw new Error("error in getting public URL");
-//   }
-
-//   console.log("Public URL:", urlData.publicUrl);
-//   return urlData.publicUrl;
-// }
+  console.log("data from api", data);
+  if (error) throw new Error("error in getting category counts");
+  return data;
+}
