@@ -26,10 +26,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchProducts, setPage } from "@/features/products/ProductsSlice";
 import { Minus } from "lucide-react";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useSearchParams, useRouter, redirect } from "next/navigation";
 import Spinner from "../_components/Spinner";
 import Filter from "../_components/Filter";
 import Sort from "../_components/Sort";
+import { useSession } from "next-auth/react";
 
 export default function Dashboard() {
   const dispatch = useDispatch();
